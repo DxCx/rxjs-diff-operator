@@ -36,7 +36,9 @@
   },
   "homepage": "https://github.com/DxCx/rxjs-diff-operator#readme",
   "devDependencies": {
+    "@types/clone": "^0.1.30",
     "@types/deep-diff": "0.0.29",
+    "@types/deep-freeze": "0.0.29",
     "@types/jest": "^15.1.32",
     "@types/node": "^6.0.38",
     "awesome-typescript-loader": "^2.2.1",
@@ -61,7 +63,9 @@
     "rxjs": ">=5.0.0-beta"
   },
   "dependencies": {
-    "deep-diff": "^0.3.4"
+    "clone": "^1.0.2",
+    "deep-diff": "^0.3.4",
+    "deep-freeze": "0.0.1"
   },
   "jest": {
     "scriptPreprocessor": "node_modules/typescript-babel-jest",

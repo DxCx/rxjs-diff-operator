@@ -1,0 +1,9 @@
+exports[`fromDiff operator emits basic changes 1`] = `
+Array [
+  1,
+  2,
+  3,
+  4,
+  5
+]
+`;
