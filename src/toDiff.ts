@@ -4,10 +4,6 @@ import { Subscriber } from 'rxjs/Subscriber';
 import { IObservableDiff } from './interfaces';
 import { diff } from 'deep-diff';
 
-export interface ToDiffSignature<T> {
-  (): Observable<IObservableDiff>;
-}
-
 export function toDiff<T>(): Observable<IObservableDiff> {
   return this.lift(new ToDiffOperator());
 }
@@ -20,6 +16,7 @@ export class ToDiffOperator<T> implements Operator<T, T> {
 
 class ToDiffSubscriber<T> extends Subscriber<T> {
   private count: number = 0;
+  private isObject: boolean = false;
   private lastValue: any;
 
   constructor(destination: Subscriber<T>) {
@@ -27,21 +24,16 @@ class ToDiffSubscriber<T> extends Subscriber<T> {
   }
 
   protected _next(value: T) {
-      let encapseValue: any = value;
-      let isObject: boolean = true;
-
-      if ( typeof value !== "object" ) {
-          encapseValue = { p: value };
-          isObject = false;
-      }
-
       if ( 0 === this.count ) {
-          this.destination.next({type: 'init', payload: encapseValue, isObject});
+          this.isObject = (typeof value === 'object');
+          this.destination.next({type: 'init', payload: value, isObject: this.isObject});
+      } else if ( this.isObject ) {
+          this.destination.next({type: 'update', payload: diff(this.lastValue, value)});
       } else {
-          this.destination.next({type: 'update', payload: diff(this.lastValue, encapseValue), isObject});
+          this.destination.next({type: 'update', payload: value});
       }
 
-      this.lastValue = encapseValue;
+      this.lastValue = value;
       this.count ++;
   }
 
@@ -57,9 +49,3 @@ class ToDiffSubscriber<T> extends Subscriber<T> {
 }
 
 Observable.prototype.toDiff = toDiff;
-
-declare module 'rxjs/Observable' {
-  interface Observable<T> {
-    toDiff: ToDiffSignature<T>;
-  }
-}

@@ -5,7 +5,7 @@ require('babel-core/register');
 require('babel-polyfill');
 
 import { Observable } from 'rxjs';
-import './toDiff';
+import './index';
 
 describe('toDiff operator', () => {
     it('Should be pass sanity', () => {

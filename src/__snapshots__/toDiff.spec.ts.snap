@@ -2,65 +2,23 @@ exports[`toDiff operator emits basic changes 1`] = `
 Array [
   Object {
     "isObject": false,
-    "payload": Object {
-      "p": 1
-    },
+    "payload": 1,
     "type": "init"
   },
   Object {
-    "isObject": false,
-    "payload": Array [
-      DiffEdit {
-        "kind": "E",
-        "lhs": 1,
-        "path": Array [
-          "p"
-        ],
-        "rhs": 2
-      }
-    ],
+    "payload": 2,
     "type": "update"
   },
   Object {
-    "isObject": false,
-    "payload": Array [
-      DiffEdit {
-        "kind": "E",
-        "lhs": 2,
-        "path": Array [
-          "p"
-        ],
-        "rhs": 3
-      }
-    ],
+    "payload": 3,
     "type": "update"
   },
   Object {
-    "isObject": false,
-    "payload": Array [
-      DiffEdit {
-        "kind": "E",
-        "lhs": 3,
-        "path": Array [
-          "p"
-        ],
-        "rhs": 4
-      }
-    ],
+    "payload": 4,
     "type": "update"
   },
   Object {
-    "isObject": false,
-    "payload": Array [
-      DiffEdit {
-        "kind": "E",
-        "lhs": 4,
-        "path": Array [
-          "p"
-        ],
-        "rhs": 5
-      }
-    ],
+    "payload": 5,
     "type": "update"
   },
   Object {
@@ -79,7 +37,6 @@ Array [
     "type": "init"
   },
   Object {
-    "isObject": true,
     "payload": Array [
       DiffEdit {
         "kind": "E",
@@ -93,7 +50,6 @@ Array [
     "type": "update"
   },
   Object {
-    "isObject": true,
     "payload": Array [
       DiffEdit {
         "kind": "E",
@@ -107,7 +63,6 @@ Array [
     "type": "update"
   },
   Object {
-    "isObject": true,
     "payload": Array [
       DiffEdit {
         "kind": "E",
@@ -121,7 +76,6 @@ Array [
     "type": "update"
   },
   Object {
-    "isObject": true,
     "payload": Array [
       DiffEdit {
         "kind": "E",
