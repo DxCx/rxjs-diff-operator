@@ -1,44 +1,134 @@
 exports[`toDiff operator emits basic changes 1`] = `
 Array [
   Object {
-    "payload": 1,
+    "isObject": false,
+    "payload": Object {
+      "p": 1
+    },
     "type": "init"
   },
   Object {
+    "isObject": false,
     "payload": Array [
       DiffEdit {
         "kind": "E",
         "lhs": 1,
+        "path": Array [
+          "p"
+        ],
         "rhs": 2
       }
     ],
     "type": "update"
   },
   Object {
+    "isObject": false,
     "payload": Array [
       DiffEdit {
         "kind": "E",
         "lhs": 2,
+        "path": Array [
+          "p"
+        ],
         "rhs": 3
       }
     ],
     "type": "update"
   },
   Object {
+    "isObject": false,
     "payload": Array [
       DiffEdit {
         "kind": "E",
         "lhs": 3,
+        "path": Array [
+          "p"
+        ],
         "rhs": 4
       }
     ],
     "type": "update"
   },
   Object {
+    "isObject": false,
     "payload": Array [
       DiffEdit {
         "kind": "E",
         "lhs": 4,
+        "path": Array [
+          "p"
+        ],
+        "rhs": 5
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "type": "complete"
+  }
+]
+`;
+
+exports[`toDiff operator emits object changes 1`] = `
+Array [
+  Object {
+    "isObject": true,
+    "payload": Object {
+      "value": 1
+    },
+    "type": "init"
+  },
+  Object {
+    "isObject": true,
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 1,
+        "path": Array [
+          "value"
+        ],
+        "rhs": 2
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "isObject": true,
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 2,
+        "path": Array [
+          "value"
+        ],
+        "rhs": 3
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "isObject": true,
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 3,
+        "path": Array [
+          "value"
+        ],
+        "rhs": 4
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "isObject": true,
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 4,
+        "path": Array [
+          "value"
+        ],
         "rhs": 5
       }
     ],

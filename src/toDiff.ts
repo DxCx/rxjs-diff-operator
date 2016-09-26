@@ -27,18 +27,26 @@ class ToDiffSubscriber<T> extends Subscriber<T> {
   }
 
   protected _next(value: T) {
-      if ( 0 === this.count ) {
-          this.destination.next({type: 'init', payload: value});
-      } else {
-          this.destination.next({type: 'update', payload: diff(this.lastValue, value)});
+      let encapseValue: any = value;
+      let isObject: boolean = true;
+
+      if ( typeof value !== "object" ) {
+          encapseValue = { p: value };
+          isObject = false;
       }
 
-      this.lastValue = value;
+      if ( 0 === this.count ) {
+          this.destination.next({type: 'init', payload: encapseValue, isObject});
+      } else {
+          this.destination.next({type: 'update', payload: diff(this.lastValue, encapseValue), isObject});
+      }
+
+      this.lastValue = encapseValue;
       this.count ++;
   }
 
   protected _error(e: Error) {
-      this.destination.next({type: 'error', payload: e});
+      this.destination.next({type: 'error', payload: e.message});
       this.destination.complete();
   }
 
