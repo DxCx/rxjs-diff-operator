@@ -131,7 +131,7 @@ var bundle_opts = {
 	// - default: false
 	emitOnNoIncludedFileNotFound: false,
 	// output d.ts as designed for module folder. (no declare modules)
-	outputAsModuleFolder: false
+	outputAsModuleFolder: true
 };
 
 var webpack_opts = {

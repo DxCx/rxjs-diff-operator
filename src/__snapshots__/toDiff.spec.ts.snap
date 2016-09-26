@@ -1,0 +1,51 @@
+exports[`toDiff operator emits basic changes 1`] = `
+Array [
+  Object {
+    "payload": 1,
+    "type": "init"
+  },
+  Object {
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 1,
+        "rhs": 2
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 2,
+        "rhs": 3
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 3,
+        "rhs": 4
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 4,
+        "rhs": 5
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "type": "complete"
+  }
+]
+`;
