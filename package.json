@@ -71,6 +71,7 @@
         "/node_modules/",
         "/src/index.ts"
     ],
+    "coverageReporters": [ "lcov", "text", "html" ],
     "testRegex": ".*\\.spec\\.ts$",
     "moduleFileExtensions": [
       "ts",
