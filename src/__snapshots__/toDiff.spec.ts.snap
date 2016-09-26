@@ -27,6 +27,35 @@ Array [
 ]
 `;
 
+exports[`toDiff operator emits errors as well 1`] = `
+Array [
+  Object {
+    "isObject": true,
+    "payload": Object {
+      "value": 1
+    },
+    "type": "init"
+  },
+  Object {
+    "payload": Array [
+      DiffEdit {
+        "kind": "E",
+        "lhs": 1,
+        "path": Array [
+          "value"
+        ],
+        "rhs": 2
+      }
+    ],
+    "type": "update"
+  },
+  Object {
+    "payload": "testing errors",
+    "type": "error"
+  }
+]
+`;
+
 exports[`toDiff operator emits object changes 1`] = `
 Array [
   Object {
