@@ -9,11 +9,10 @@ this package adds toDiff/fromDiff operators for [RxJs 5](https://github.com/Reac
 those operators are meant for sending observables over network:
 ![Example diagram](./diagram.png)
 
-#Operators:
-##toDiff
-----
-####signature: `toDiff(): Observable<IObservableDiff>`
-### Description
+## Operators:
+### toDiff
+#### signature: `toDiff(): Observable<IObservableDiff>`
+#### Description
 
 toDiff operator is used to convert output of an obsersvable stream,
 into a stream that contains diff information.
@@ -30,10 +29,9 @@ const example = source.toDiff();
 const subscribe = example.subscribe(val => console.log(val));
 ```
 
-##fromDiff
-----
-####signature: `fromDiff(): Observable<any>`
-### Description
+### fromDiff
+##### signature: `fromDiff(): Observable<any>`
+#### Description
 
 fromDiff operator is used to convert output of an diff obsersvable stream (see toDiff above),
 into a stream that contains diff information.
@@ -50,12 +48,13 @@ const example = source.toDiff();
 const subscribe = example.subscribe(val => console.log(val));
 ```
 
-#Handling Objects:
+## Deep-Dive:
+### Handling Objects:
 diffing simple values is not efficient, the real power of this operator comes when
 dealing with array or objects.
 for that, [deep-diff](https://www.npmjs.com/package/deep-diff) is being used.
 
-#Protocol
+### Protocol
 the protocol contains 4 message types:
   - init
     - must be the first message on the line.
@@ -69,3 +68,123 @@ the protocol contains 4 message types:
     - contains payload of error message
   - complete
     - sent when original observable is complete.
+
+### Object example:
+given the input of:
+```json
+{
+  "value": 1,
+},
+{
+  "value": 2,
+},
+{
+  "value": 3,
+},
+{
+  "value": 4,
+},
+{
+  "value": 5,
+},
+```
+this output will be emitted:
+```json
+{
+    "isObject": true,
+    "payload": {
+        "value": 1,
+    },
+    "type": "init",
+}, {
+    "payload": [
+        {
+            "kind": "E",
+            "lhs": 1,
+            "path": [
+                "value",
+            ],
+            "rhs": 2,
+        },
+    ],
+    "type": "update",
+}, {
+    "payload": [
+        {
+            "kind": "E",
+            "lhs": 2,
+            "path": [
+                "value",
+            ],
+            "rhs": 3,
+        },
+    ],
+    "type": "update",
+}, {
+    "payload": [
+        {
+            "kind": "E",
+            "lhs": 3,
+            "path": [
+                "value",
+            ],
+            "rhs": 4,
+        },
+    ],
+    "type": "update",
+}, {
+    "payload": [
+        {
+            "kind": "E",
+            "lhs": 4,
+            "path": [
+                "value",
+            ],
+            "rhs": 5,
+        },
+    ],
+    "type": "update",
+}, {
+    "type": "complete",
+}
+```
+### Observable with an error example:
+given the input of:
+```typescript
+let obs: Observable<{ value: number }> = Observable.of(1, 2, 3, 4, 5)
+.map((v: number, i: number) => {
+    if ( i === 2 ) {
+        throw new Error('testing errors');
+    }
+
+    return { value: v };
+});
+```
+this output will be emitted:
+```json
+{
+    "isObject": true,
+    "payload": {
+        "value": 1,
+    },
+    "type": "init",
+}, {
+    "payload": [
+        {
+            "kind": "E",
+            "lhs": 1,
+            "path": [
+                "value",
+            ],
+            "rhs": 2,
+        },
+    ],
+    "type": "update",
+}, {
+    "payload": "testing errors",
+    "type": "error",
+}
+```
+## Contributions
+
+Contributions, issues and feature requests are very welcome. If you are using this package and fixed a bug for yourself, please consider submitting a PR!
