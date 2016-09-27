@@ -1,0 +1,9 @@
+exports[`diff operator combined works togather 1`] = `
+Array [
+  1,
+  2,
+  3,
+  4,
+  5
+]
+`;
