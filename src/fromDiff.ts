@@ -25,16 +25,21 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
     super(destination);
   }
 
+  /** onNext hook. **/
   protected _next(value: IObservableDiff) {
+      /* is this the first message? */
       if ( 0 === this.count ) {
+          /* start init sequance. */
           this._process_init(value);
       } else {
+          /* general message processing */
           this._process_diff(value);
       }
       this.count ++;
   }
 
-  private _updateValue(newValue: any) {
+  /** emits a new value, while saving it for patching in the future **/
+  private _emitValue(newValue: any) {
       this.lastValue = clone(newValue);
       if ( this.isObject ) {
           deepFreeze(this.lastValue);
@@ -43,12 +48,15 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
       this.destination.next(this.lastValue);
   }
 
+  /** general message handler **/
   private _process_diff({type, payload}: IObservableDiff) {
       switch ( type ) {
           case 'init':
+              /* init message cannot be sent more then once. */
               this.destination.error(new Error('Init message emitted while in sequance'));
               break;
           case 'update':
+              /* update message */
               let copyValue = payload;
               if ( this.isObject ) {
                   copyValue = clone(this.lastValue);
@@ -56,12 +64,14 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
                       applyChange(copyValue, true, changeset);
                   });
               };
-              this._updateValue(copyValue);
+              this._emitValue(copyValue);
               break;
           case 'error':
+              /* error message, throw it */
               this.destination.error(new Error(payload));
               break;
           case 'complete':
+              /* complete message, completes the observable */
               this.destination.complete();
               break;
           default:
@@ -70,14 +80,16 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
       }
   }
 
+  /** init message handler **/
   private _process_init({type, payload, isObject}: IObservableDiff) {
+      /* if the first message is not init message, throw error. */
       if ( type !== 'init') {
           this.destination.error(new Error('Init message was not emitted.'));
           return;
       }
       this.isObject = isObject;
 
-      this._updateValue(payload);
+      this._emitValue(payload);
   }
 }
 

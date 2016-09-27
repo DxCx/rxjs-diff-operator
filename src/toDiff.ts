@@ -23,13 +23,19 @@ class ToDiffSubscriber<T> extends Subscriber<T> {
     super(destination);
   }
 
+  /** onNext hook. **/
   protected _next(value: T) {
+      /* is this the first message? */
       if ( 0 === this.count ) {
+          /* check for isObject property */
           this.isObject = (typeof value === 'object');
+          /* emit the init message */
           this.destination.next({type: 'init', payload: value, isObject: this.isObject});
       } else if ( this.isObject ) {
+          /* this is an object, sending diff update */
           this.destination.next({type: 'update', payload: diff(this.lastValue, value)});
       } else {
+          /* this is a simple value, sending as-is */
           this.destination.next({type: 'update', payload: value});
       }
 
@@ -37,12 +43,16 @@ class ToDiffSubscriber<T> extends Subscriber<T> {
       this.count ++;
   }
 
+  /** onError hook. **/
   protected _error(e: Error) {
+      /* emit the error message, then complete the observable */
       this.destination.next({type: 'error', payload: e.message});
       this.destination.complete();
   }
 
+  /** onComplete hook. **/
   protected _complete() {
+      /* emit the complete message, then complete the observable */
       this.destination.next({type: 'complete'});
       this.destination.complete();
   }
