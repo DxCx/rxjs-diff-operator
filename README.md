@@ -43,7 +43,7 @@ this operator is inteded to be used on the client.
 //emit diff information
 const source = Rx.Observable.from({ type: "init", payload: 1, isObject: false }, { type: "update", payload: 2 }, { type: "complete" });
 //add 10 to each value
-const example = source.toDiff();
+const example = source.fromDiff();
 //output: 1, 2
 const subscribe = example.subscribe(val => console.log(val));
 ```
