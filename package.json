@@ -1,6 +1,6 @@
 {
   "name": "rxjs-diff-operator",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "toDiff/fromDiff operators for RxJs 5 - useful for sending observables over network.",
   "main": "dist/main.js",
   "typings": "dist/main.d.ts",
@@ -68,10 +68,14 @@
   "jest": {
     "scriptPreprocessor": "node_modules/ts-jest/preprocessor.js",
     "coveragePathIgnorePatterns": [
-        "/node_modules/",
-        "/src/index.ts"
+      "/node_modules/",
+      "/src/index.ts"
     ],
-    "coverageReporters": [ "lcov", "text", "html" ],
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ],
     "testRegex": ".*\\.spec\\.ts$",
     "moduleFileExtensions": [
       "ts",
