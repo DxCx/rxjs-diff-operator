@@ -49,11 +49,6 @@ const subscribe = example.subscribe(val => console.log(val));
 ```
 
 ## Deep-Dive:
-### Handling Objects:
-diffing simple values is not efficient, the real power of this operator comes when
-dealing with array or objects.
-for that, [deep-diff](https://www.npmjs.com/package/deep-diff) is being used.
-
 ### Protocol
 the protocol contains 4 message types:
   - init
@@ -68,6 +63,11 @@ the protocol contains 4 message types:
     - contains payload of error message
   - complete
     - sent when original observable is complete.
+
+### Handling Objects:
+diffing simple values is not efficient, the real power of this operator comes when
+dealing with array or objects.
+for that, [deep-diff](https://www.npmjs.com/package/deep-diff) is being used.
 
 ### Object example:
 given the input of:
