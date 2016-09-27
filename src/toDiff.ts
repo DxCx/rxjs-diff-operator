@@ -23,7 +23,7 @@ class ToDiffSubscriber<T> extends Subscriber<T> {
     super(destination);
   }
 
-  /** onNext hook. **/
+  /** onNext hook. */
   protected _next(value: T) {
       /* is this the first message? */
       if ( 0 === this.count ) {
@@ -43,14 +43,14 @@ class ToDiffSubscriber<T> extends Subscriber<T> {
       this.count ++;
   }
 
-  /** onError hook. **/
+  /** onError hook. */
   protected _error(e: Error) {
       /* emit the error message, then complete the observable */
       this.destination.next({type: 'error', payload: e.message});
       this.destination.complete();
   }
 
-  /** onComplete hook. **/
+  /** onComplete hook. */
   protected _complete() {
       /* emit the complete message, then complete the observable */
       this.destination.next({type: 'complete'});

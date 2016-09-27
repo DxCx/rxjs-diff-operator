@@ -25,7 +25,7 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
     super(destination);
   }
 
-  /** onNext hook. **/
+  /** onNext hook. */
   protected _next(value: IObservableDiff) {
       /* is this the first message? */
       if ( 0 === this.count ) {
@@ -38,7 +38,7 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
       this.count ++;
   }
 
-  /** emits a new value, while saving it for patching in the future **/
+  /** emits a new value, while saving it for patching in the future */
   private _emitValue(newValue: any) {
       this.lastValue = clone(newValue);
       if ( this.isObject ) {
@@ -48,7 +48,7 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
       this.destination.next(this.lastValue);
   }
 
-  /** general message handler **/
+  /** general message handler */
   private _process_diff({type, payload}: IObservableDiff) {
       switch ( type ) {
           case 'init':
@@ -80,7 +80,7 @@ class FromDiffSubscriber<T extends IObservableDiff> extends Subscriber<T> {
       }
   }
 
-  /** init message handler **/
+  /** init message handler */
   private _process_init({type, payload, isObject}: IObservableDiff) {
       /* if the first message is not init message, throw error. */
       if ( type !== 'init') {
