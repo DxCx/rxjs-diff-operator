@@ -10,6 +10,7 @@
 		"emitDecoratorMetadata": true,
 		"sourceMap": false,
 		"declaration": true,
+		"declarationDir": "./src/",
 		"outDir": "dist",
 		"removeComments": false,
 		"typeRoots": [
