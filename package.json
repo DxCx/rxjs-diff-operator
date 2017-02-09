@@ -1,6 +1,6 @@
 {
   "name": "rxjs-diff-operator",
-  "version": "0.1.0",
+  "version": "0.1.1-0",
   "description": "toDiff/fromDiff operators for RxJs 5 - useful for sending observables over network.",
   "main": "dist/main.js",
   "typings": "dist/main.d.ts",
