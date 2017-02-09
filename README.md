@@ -1,4 +1,6 @@
 # rxjs-diff-operator
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/DxCx/rxjs-diff-operator.svg)](https://greenkeeper.io/)
 [![NPM version](https://img.shields.io/npm/v/rxjs-diff-operator.svg)](https://www.npmjs.com/package/rxjs-diff-operator)
 [![Build Status](https://travis-ci.org/DxCx/rxjs-diff-operator.svg?branch=master)](https://travis-ci.org/DxCx/rxjs-diff-operator)
 [![Coverage Status](https://coveralls.io/repos/github/DxCx/rxjs-diff-operator/badge.svg?branch=master)](https://coveralls.io/github/DxCx/rxjs-diff-operator?branch=master)
