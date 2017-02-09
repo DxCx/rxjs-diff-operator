@@ -1,6 +1,6 @@
 {
   "name": "rxjs-diff-operator",
-  "version": "0.1.0",
+  "version": "0.1.1-1",
   "description": "toDiff/fromDiff operators for RxJs 5 - useful for sending observables over network.",
   "main": "dist/main.js",
   "typings": "dist/main.d.ts",
@@ -19,7 +19,9 @@
     "coverage": "npm test -- --coverage --no-cache",
     "coverage:watch": "npm run coverage -- --watch",
     "prerelease": "npm run build && npm test",
-    "release": "standard-version && npm pack"
+    "release": "standard-version && npm pack",
+    "prepre-release": "npm run build && npm test",
+    "pre-release": "standard-version --prerelease && npm pack"
   },
   "repository": {
     "type": "git",
@@ -37,9 +39,6 @@
   },
   "homepage": "https://github.com/DxCx/rxjs-diff-operator#readme",
   "devDependencies": {
-    "@types/clone": "^0.1.30",
-    "@types/deep-diff": "0.0.30",
-    "@types/deep-freeze": "0.0.29",
     "@types/jest": "^18.1.1",
     "@types/node": "^7.0.5",
     "browserify": "^14.0.0",
@@ -57,12 +56,10 @@
     "webpack-node-externals": "^1.5.4"
   },
   "peerDependencies": {
-    "rxjs": ">=5.0.0-beta"
+    "rxjs": "^5.1.0"
   },
   "dependencies": {
-    "clone": "^2.1.0",
-    "deep-diff": "^0.3.4",
-    "deep-freeze": "0.0.1"
+    "observable-diff-operator": "^0.1.1"
   },
   "jest": {
     "transform": {
