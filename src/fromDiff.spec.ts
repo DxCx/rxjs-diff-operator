@@ -1,9 +1,9 @@
 'use strict';
 
 import 'jest';
+import { IObservableDiff } from 'observable-diff-operator';
 import { Observable } from 'rxjs';
 import './index';
-import { IObservableDiff } from './interfaces';
 
 describe('fromDiff operator', () => {
   it('Should be pass sanity', () => {

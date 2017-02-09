@@ -1,6 +1,5 @@
+import { IObservableDiff } from 'observable-diff-operator';
 import { Observable } from 'rxjs/Observable';
-import { IObservableDiff } from './interfaces';
-export * from './interfaces';
 export { toDiff } from './toDiff';
 export { fromDiff } from './fromDiff';
 
