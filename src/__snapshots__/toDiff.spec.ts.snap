@@ -3,27 +3,27 @@ Array [
   Object {
     "isObject": false,
     "payload": 1,
-    "type": "init"
+    "type": "init",
   },
   Object {
     "payload": 2,
-    "type": "update"
+    "type": "update",
   },
   Object {
     "payload": 3,
-    "type": "update"
+    "type": "update",
   },
   Object {
     "payload": 4,
-    "type": "update"
+    "type": "update",
   },
   Object {
     "payload": 5,
-    "type": "update"
+    "type": "update",
   },
   Object {
-    "type": "complete"
-  }
+    "type": "complete",
+  },
 ]
 `;
 
@@ -32,9 +32,9 @@ Array [
   Object {
     "isObject": true,
     "payload": Object {
-      "value": 1
+      "value": 1,
     },
-    "type": "init"
+    "type": "init",
   },
   Object {
     "payload": Array [
@@ -42,17 +42,17 @@ Array [
         "kind": "E",
         "lhs": 1,
         "path": Array [
-          "value"
+          "value",
         ],
-        "rhs": 2
-      }
+        "rhs": 2,
+      },
     ],
-    "type": "update"
+    "type": "update",
   },
   Object {
     "payload": "testing errors",
-    "type": "error"
-  }
+    "type": "error",
+  },
 ]
 `;
 
@@ -61,9 +61,9 @@ Array [
   Object {
     "isObject": true,
     "payload": Object {
-      "value": 1
+      "value": 1,
     },
-    "type": "init"
+    "type": "init",
   },
   Object {
     "payload": Array [
@@ -71,12 +71,12 @@ Array [
         "kind": "E",
         "lhs": 1,
         "path": Array [
-          "value"
+          "value",
         ],
-        "rhs": 2
-      }
+        "rhs": 2,
+      },
     ],
-    "type": "update"
+    "type": "update",
   },
   Object {
     "payload": Array [
@@ -84,12 +84,12 @@ Array [
         "kind": "E",
         "lhs": 2,
         "path": Array [
-          "value"
+          "value",
         ],
-        "rhs": 3
-      }
+        "rhs": 3,
+      },
     ],
-    "type": "update"
+    "type": "update",
   },
   Object {
     "payload": Array [
@@ -97,12 +97,12 @@ Array [
         "kind": "E",
         "lhs": 3,
         "path": Array [
-          "value"
+          "value",
         ],
-        "rhs": 4
-      }
+        "rhs": 4,
+      },
     ],
-    "type": "update"
+    "type": "update",
   },
   Object {
     "payload": Array [
@@ -110,15 +110,15 @@ Array [
         "kind": "E",
         "lhs": 4,
         "path": Array [
-          "value"
+          "value",
         ],
-        "rhs": 5
-      }
+        "rhs": 5,
+      },
     ],
-    "type": "update"
+    "type": "update",
   },
   Object {
-    "type": "complete"
-  }
+    "type": "complete",
+  },
 ]
 `;

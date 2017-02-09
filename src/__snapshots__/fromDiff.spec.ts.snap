@@ -4,26 +4,26 @@ Array [
   2,
   3,
   4,
-  5
+  5,
 ]
 `;
 
 exports[`fromDiff operator emits objects changes 1`] = `
 Array [
   Object {
-    "value": 1
+    "value": 1,
   },
   Object {
-    "value": 2
+    "value": 2,
   },
   Object {
-    "value": 3
+    "value": 3,
   },
   Object {
-    "value": 4
+    "value": 4,
   },
   Object {
-    "value": 5
-  }
+    "value": 5,
+  },
 ]
 `;

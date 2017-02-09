@@ -1,4 +1,4 @@
-export type IObservableDiffType = "init" | "next" | "error" | "complete";
+export type IObservableDiffType = 'init' | 'update' | 'error' | 'complete';
 
 export interface IObservableDiff {
     type: IObservableDiffType;
