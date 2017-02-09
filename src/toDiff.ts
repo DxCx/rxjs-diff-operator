@@ -14,35 +14,8 @@ export class ToDiffOperator<T> implements Operator<T, IObservableDiff> {
 }
 
 class ToDiffSubscriber<T> extends Subscriber<T> {
-  protected diffObserver: Observer<T>;
-
   constructor(destination: Subscriber<IObservableDiff>) {
-    super(destination);
-    this.diffObserver = toDiffObserver<T>(this.destination);
-  }
-
-  protected _next(value: T) {
-    if ( this.diffObserver.next ) {
-      return this.diffObserver.next(value);
-    } else {
-      return this.destination.next(value);
-    }
-  }
-
-  protected _error(err: Error) {
-    if ( this.diffObserver.error ) {
-      return this.diffObserver.error(err);
-    } else {
-      return this.destination.error(err);
-    }
-  }
-
-  protected _complete() {
-    if ( this.diffObserver.complete ) {
-      return this.diffObserver.complete();
-    } else {
-      return this.destination.complete();
-    }
+    super(toDiffObserver<T>(destination));
   }
 }
 

@@ -59,7 +59,7 @@
     "rxjs": "^5.1.0"
   },
   "dependencies": {
-    "observable-diff-operator": "^0.1.1-0"
+    "observable-diff-operator": "^0.1.1-1"
   },
   "jest": {
     "transform": {
