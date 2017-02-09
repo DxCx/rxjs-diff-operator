@@ -1,60 +1,48 @@
-import { diff } from 'deep-diff';
+import { IObservableDiff, Observer, toDiffObserver } from 'observable-diff-operator';
 import { Observable } from 'rxjs/Observable';
 import { Operator } from 'rxjs/Operator';
 import { Subscriber } from 'rxjs/Subscriber';
-import { IObservableDiff } from './interfaces';
 
 export function toDiff<T>(): Observable<IObservableDiff> {
   return this.lift(new ToDiffOperator());
 }
 
-export class ToDiffOperator<T> implements Operator<T, T> {
-  public call(subscriber: Subscriber<T>, source: any): any {
-    return source.subscribe(new ToDiffSubscriber(subscriber));
+export class ToDiffOperator<T> implements Operator<T, IObservableDiff> {
+  public call(subscriber: Subscriber<IObservableDiff>, source: any): any {
+    return source.subscribe(new ToDiffSubscriber<T>(subscriber));
   }
 }
 
 class ToDiffSubscriber<T> extends Subscriber<T> {
-  private count: number = 0;
-  private isObject: boolean = false;
-  private lastValue: any;
+  protected diffObserver: Observer<T>;
 
-  constructor(destination: Subscriber<T>) {
+  constructor(destination: Subscriber<IObservableDiff>) {
     super(destination);
+    this.diffObserver = toDiffObserver<T>(this.destination);
   }
 
-  /** onNext hook. */
   protected _next(value: T) {
-    /* is this the first message? */
-    if ( 0 === this.count ) {
-      /* check for isObject property */
-      this.isObject = (typeof value === 'object');
-      /* emit the init message */
-      this.destination.next({type: 'init', payload: value, isObject: this.isObject});
-    } else if ( this.isObject ) {
-      /* this is an object, sending diff update */
-      this.destination.next({type: 'update', payload: diff(this.lastValue, value)});
+    if ( this.diffObserver.next ) {
+      return this.diffObserver.next(value);
     } else {
-      /* this is a simple value, sending as-is */
-      this.destination.next({type: 'update', payload: value});
+      return this.destination.next(value);
     }
-
-    this.lastValue = value;
-    this.count ++;
   }
 
-  /** onError hook. */
-  protected _error(e: Error) {
-    /* emit the error message, then complete the observable */
-    this.destination.next({type: 'error', payload: e.message});
-    this.destination.complete();
+  protected _error(err: Error) {
+    if ( this.diffObserver.error ) {
+      return this.diffObserver.error(err);
+    } else {
+      return this.destination.error(err);
+    }
   }
 
-  /** onComplete hook. */
   protected _complete() {
-    /* emit the complete message, then complete the observable */
-    this.destination.next({type: 'complete'});
-    this.destination.complete();
+    if ( this.diffObserver.complete ) {
+      return this.diffObserver.complete();
+    } else {
+      return this.destination.complete();
+    }
   }
 }
 
