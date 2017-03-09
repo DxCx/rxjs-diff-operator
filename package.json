@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/DxCx/rxjs-diff-operator#readme",
   "devDependencies": {
-    "@types/jest": "^18.1.1",
+    "@types/jest": "^19.2.0",
     "@types/node": "^7.0.5",
     "browserify": "^14.0.0",
     "delete-empty": "^1.0.0",
