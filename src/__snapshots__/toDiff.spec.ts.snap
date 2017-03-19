@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`toDiff operator emits basic changes 1`] = `
 Array [
   Object {
