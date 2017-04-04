@@ -41,7 +41,7 @@
   "devDependencies": {
     "@types/jest": "^19.2.0",
     "@types/node": "^7.0.5",
-    "browserify": "^14.0.0",
+    "browserify": "14.1.0",
     "delete-empty": "^1.0.0",
     "dts-bundle": "^0.7.2",
     "jest": "^19.0.2",
