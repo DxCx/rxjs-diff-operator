@@ -39,28 +39,28 @@
   },
   "homepage": "https://github.com/DxCx/rxjs-diff-operator#readme",
   "devDependencies": {
-    "@types/jest": "^19.2.0",
-    "@types/node": "^7.0.5",
-    "browserify": "^14.0.0",
-    "delete-empty": "^1.0.0",
+    "@types/jest": "^19.2.2",
+    "@types/node": "^7.0.12",
+    "browserify": "^14.3.0",
+    "delete-empty": "^1.0.1",
     "dts-bundle": "^0.7.2",
     "jest": "^19.0.2",
     "jest-cli": "^19.0.2",
-    "rxjs": "^5.2.0",
+    "rxjs": "^5.3.0",
     "standard-version": "^4.0.0",
-    "ts-jest": "^19.0.2",
-    "ts-loader": "^2.0.0",
-    "tslint": "^4.4.2",
-    "tslint-loader": "^3.3.0",
+    "ts-jest": "^19.0.8",
+    "ts-loader": "^2.0.3",
+    "tslint": "^5.1.0",
+    "tslint-loader": "^3.5.2",
     "typescript": "2.2.2",
     "webpack": "2.3.3",
     "webpack-node-externals": "^1.5.4"
   },
   "peerDependencies": {
-    "rxjs": "^5.2.0"
+    "rxjs": "^5.3.0"
   },
   "dependencies": {
-    "observable-diff-operator": "^0.1.1"
+    "observable-diff-operator": "^0.1.2"
   },
   "jest": {
     "transform": {

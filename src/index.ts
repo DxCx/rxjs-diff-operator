@@ -3,13 +3,8 @@ import { Observable } from 'rxjs/Observable';
 export { toDiff } from './toDiff';
 export { fromDiff } from './fromDiff';
 
-export interface ToDiffSignature<T> {
-  (): Observable<IObservableDiff>;
-}
-
-export interface FromDiffSignature<T> {
-  (): Observable<IObservableDiff>;
-}
+export type ToDiffSignature<T> = () => Observable<IObservableDiff>;
+export type FromDiffSignature<T> = () => Observable<IObservableDiff>;
 
 declare module 'rxjs/Observable' {
   interface Observable<T> {

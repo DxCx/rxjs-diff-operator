@@ -7,11 +7,11 @@ import './index';
 
 describe('toDiff operator', () => {
   it('Should be pass sanity', () => {
-    expect(typeof (<any> Observable.prototype).toDiff).toBe('function');
+    expect(typeof (Observable.prototype as any).toDiff).toBe('function');
   });
 
   it('emits basic changes', () => {
-    let obs: Observable<number> = Observable.of(1, 2, 3, 4, 5);
+    const obs: Observable<number> = Observable.of(1, 2, 3, 4, 5);
 
     return obs.toDiff().bufferCount(6).toPromise().then((msgs) => {
       expect(typeof msgs).toBe('object');
@@ -22,7 +22,7 @@ describe('toDiff operator', () => {
   });
 
   it('emits object changes', () => {
-    let obs: Observable<{ value: number }> = Observable.of(1, 2, 3, 4, 5).map((v) => ({ value: v}));
+    const obs: Observable<{ value: number }> = Observable.of(1, 2, 3, 4, 5).map((v) => ({ value: v}));
 
     return obs.toDiff().bufferCount(6).toPromise().then((msgs) => {
       expect(typeof msgs).toBe('object');
@@ -33,7 +33,7 @@ describe('toDiff operator', () => {
   });
 
   it('emits errors as well', () => {
-    let obs: Observable<{ value: number }> = Observable.of(1, 2, 3, 4, 5)
+    const obs: Observable<{ value: number }> = Observable.of(1, 2, 3, 4, 5)
       .map((v: number, i: number) => {
         if ( i === 2 ) {
           throw new Error('testing errors');
