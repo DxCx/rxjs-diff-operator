@@ -57,7 +57,7 @@
     "webpack-node-externals": "^1.5.4"
   },
   "peerDependencies": {
-    "rxjs": "^5.3.0"
+    "rxjs": "^5.3.3"
   },
   "dependencies": {
     "observable-diff-operator": "^0.1.2"
